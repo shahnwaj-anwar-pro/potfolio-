@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shahnawaj Anwar | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <title>Shahnawaj Anwar | Futuristic Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== Root Variables (Hyprland colors) ===== */
+    /* ===== Root Variables ===== */
     :root {
       --bg-dark: #0f0f17;
       --text-light: #f5f5f5;
       --accent1: #00d9f5;
       --accent2: #8a2be2;
+      --accent3: #ff6ec7;
       --card-bg: rgba(255,255,255,0.05);
       --shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
@@ -23,6 +23,7 @@
       background: var(--bg-dark);
       color: var(--text-light);
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     /* ===== Navbar ===== */
@@ -34,14 +35,16 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(15,15,23,0.85);
+      background: rgba(15,15,23,0.9);
       backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     nav h1 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       background: linear-gradient(90deg, var(--accent1), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-family: "JetBrains Mono", monospace;
     }
     nav ul {
       list-style: none;
@@ -63,8 +66,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 60px 10%;
+      padding: 80px 10%;
       min-height: 100vh;
+      position: relative;
+      overflow: hidden;
     }
     .hero-text {
       max-width: 50%;
@@ -76,15 +81,21 @@
       letter-spacing: 2px;
     }
     .hero-text h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin: 15px 0;
+      line-height: 1.2;
+    }
+    .hero-text h1 span {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .hero-text p {
       margin-bottom: 25px;
       font-size: 1.1rem;
       opacity: 0.85;
     }
-    .hero-text .btns a {
+    .btns a {
       display: inline-block;
       margin-right: 15px;
       padding: 12px 25px;
@@ -100,7 +111,7 @@
     }
     .btn-primary:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px var(--accent2);
+      box-shadow: 0 0 25px var(--accent2);
     }
     .btn-secondary {
       border: 2px solid var(--accent1);
@@ -113,11 +124,11 @@
 
     .hero-image {
       position: relative;
-      width: 350px;
-      height: 350px;
+      width: 380px;
+      height: 380px;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 0 40px var(--accent2);
+      box-shadow: 0 0 50px var(--accent2);
       animation: float 4s ease-in-out infinite;
     }
     .hero-image img {
@@ -150,7 +161,7 @@
       box-shadow: 0 0 20px var(--accent1);
     }
 
-    /* ===== Projects Grid ===== */
+    /* ===== Projects ===== */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -171,11 +182,21 @@
       overflow: hidden;
     }
     .skill-progress {
-      height: 12px;
+      height: 14px;
       border-radius: 30px;
       width: 0;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
       transition: width 2s ease;
+      box-shadow: 0 0 20px var(--accent1);
+    }
+
+    /* ===== Achievements ===== */
+    .achievements ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .achievements li::before {
+      content: "🏆 ";
     }
 
     /* ===== Footer ===== */
@@ -191,10 +212,6 @@
     @keyframes fadeInUp {
       from {opacity:0; transform: translateY(20px);}
       to {opacity:1; transform: translateY(0);}
-    }
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
     }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -212,14 +229,21 @@
         margin-bottom: 40px;
       }
       .hero-image {
-        width: 250px;
-        height: 250px;
+        width: 280px;
+        height: 280px;
       }
+    }
+
+    /* Futuristic background animation */
+    #particles-js {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
-
   <!-- Navbar -->
   <nav>
     <h1>Shahnawaj Anwar</h1>
@@ -227,19 +251,21 @@
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
+    <div id="particles-js"></div>
     <div class="hero-text">
-      <h2>COMPUTER SCIENCE STUDENT</h2>
-      <h1>Hello, my name is <br> <span style="color:var(--accent1)">Shahnawaj Anwar</span></h1>
-      <p>Passionate about technology, programming, and building future solutions. Currently a 12th-grade student exploring computer science, math, and economics.</p>
+      <h2>CEO AT ANWAR VENTURES</h2>
+      <h1>Hello, I'm <span>Shahnawaj Anwar</span></h1>
+      <p>I'm smart. Give me a problem, I’ll solve it before your coffee gets cold.</p>
       <div class="btns">
         <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-secondary">Contact</a>
+        <a href="#contact" class="btn-secondary">Hire Me</a>
       </div>
     </div>
     <div class="hero-image">
@@ -251,7 +277,7 @@
   <section id="about">
     <h2>About Me</h2>
     <div class="card">
-      <p>I am a dedicated Computer Science student at Pashupati Multiple Campus. My journey revolves around problem-solving, competitive programming, and exploring areas like cybersecurity, software development, and mathematics. I aim to create impactful projects that merge creativity with technology.</p>
+      <p>I’m a 12th managment studnet and main subject as  Computer Science at Pashupati Multiple Campus, but don’t let the “student” tag fool you — I’ve been coding for a few years. I love solving problems, building futuristic projects. Think of me as someone with really good coding experinence, packed into the body of a student.</p>
     </div>
   </section>
 
@@ -259,35 +285,36 @@
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
-      <div class="card">
-        <h3>Portfolio Website</h3>
-        <p>A responsive personal portfolio showcasing my journey, skills, and goals.</p>
-      </div>
-      <div class="card">
-        <h3>Number Guessing Game</h3>
-        <p>A Python-based interactive game with difficulty levels and score tracking.</p>
-      </div>
-      <div class="card">
-        <h3>Economics Dashboard</h3>
-        <p>A simple data visualization project analyzing economic trends using Python.</p>
-      </div>
+      <div class="card"><h3>Portfolio Website</h3><p>A futuristic, glowing, animated portfolio (yes, the one you’re looking at).</p></div>
+      <div class="card"><h3>AI Chatbot</h3><p>Built an intelligent assistant that occasionally roasts you when you ask dumb questions.</p></div>
+      <div class="card"><h3>Competitive Programming Toolkit</h3><p>A custom-built toolkit for automating coding contests — faster submissions, better debugging.</p></div>
+      <div class="card"><h3>Linux Rice Setup</h3><p>Custom Hyprland + Arch Linux setup with configs so smooth, even r/unixporn cried.</p></div>
+      <div class="card"><h3>Economics Dashboard</h3><p>Data viz project that made boring numbers look cooler than sci-fi holograms.</p></div>
+      <div class="card"><h3>Python Games</h3><p>Snake, Tic-Tac-Toe, and a Number Guessing Game with difficulty levels and scoring system.</p></div>
     </div>
   </section>
 
   <!-- Skills -->
   <section id="skills" class="skills">
     <h2>Skills</h2>
-    <div class="skill">
-      <div class="skill-name">Operating Systems</div>
-      <div class="skill-bar"><div class="skill-progress" data-progress="85%"></div></div>
-    </div>
-    <div class="skill">
-      <div class="skill-name">Mathematics</div>
-      <div class="skill-bar"><div class="skill-progress" data-progress="75%"></div></div>
-    </div>
-    <div class="skill">
-      <div class="skill-name">Programming Basics</div>
-      <div class="skill-bar"><div class="skill-progress" data-progress="65%"></div></div>
+    <div class="skill"><div class="skill-name">C++ & Algorithms</div><div class="skill-bar"><div class="skill-progress" data-progress="95%"></div></div></div>
+    <div class="skill"><div class="skill-name">Python & Automation</div><div class="skill-bar"><div class="skill-progress" data-progress="90%"></div></div></div>
+    <div class="skill"><div class="skill-name">Linux & Hyprland</div><div class="skill-bar"><div class="skill-progress" data-progress="85%"></div></div></div>
+    <div class="skill"><div class="skill-name">Web Development (HTML/CSS/JS)</div><div class="skill-bar"><div class="skill-progress" data-progress="80%"></div></div></div>
+    <div class="skill"><div class="skill-name">Cybersecurity</div><div class="skill-bar"><div class="skill-progress" data-progress="70%"></div></div></div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" class="achievements">
+    <h2>Achievements & Competitions</h2>
+    <div class="card">
+      <ul>
+        <li>loading.........................</li>
+        <li>loading.........................</li>
+        <li>loading.........................</li>
+        <li>loading.........................</li>
+        <li>loading.........................</li>
+      </ul>
     </div>
   </section>
 
@@ -303,24 +330,35 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Shahnawaj Anwar | Built with 💻 and passion</p>
+    <p>© 2025 Shahnawaj Anwar | Futuristic Portfolio 🚀</p>
   </footer>
 
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Animate skill bars on scroll
-    const skills = document.querySelectorAll(".skill-progress");
-    const options = { threshold: 0.5 };
+    // Particles background
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: ["#00d9f5", "#8a2be2", "#ff6ec7"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: 3 },
+        move: { enable: true, speed: 2 }
+      }
+    });
 
+    // Animate skill bars
+    const skills = document.querySelectorAll(".skill-progress");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const bar = entry.target;
-          bar.style.width = bar.getAttribute("data-progress");
+          entry.target.style.width = entry.target.getAttribute("data-progress");
         }
       });
-    }, options);
-
+    }, { threshold: 0.5 });
     skills.forEach(skill => observer.observe(skill));
   </script>
 </body>
 </html>
+
